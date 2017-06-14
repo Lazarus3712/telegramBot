@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 
 class Weather:
     URL = "https://ua.sinoptik.ua/"
-    __LOCAL = "погода-львів"
     __DATE = ""
     __TITLE = ""
     __MIN_TEMP = None
@@ -15,11 +14,6 @@ class Weather:
     __region = 'львівська-область/'
     __district = 'жовківський-район/'
     __position = list('')
-    '''village = 'львівська-область/'''
-
-    list_region = {}
-    list_district = {}
-    list_position = {}
 
     def set_region(self, region='львівська-область/'):
         self.__region = region + '/'
@@ -29,31 +23,11 @@ class Weather:
         self.__district = district + '/'
         self.__position.append(self.__district)
 
-    def get_list_region(self):
-        response = requests.get(self.URL + 'україна/').text
-        page = BeautifulSoup(response, 'lxml')
-        main = page.find(class_='mapRightCol').find_all('ul')[1].find_all('a')
-        self.list_region = {context.text: context.get('href') for context in main}
-        return self.list_region
-
-    def get_list_district(self):
-        response = requests.get(self.URL + 'україна/' + self.__region).text
-        page = BeautifulSoup(response, 'lxml')
-        main = page.find(class_='mapRightCol').find_all('ul')[1].find_all('a')
-        self.list_district = {context.text: context.get('href') for context in main}
-        return self.list_district
-
-    def set_local(self, local='львів'):
-        self.__LOCAL = 'погода-' + str(local).lower()
-
-    '''def set_region(self, region):
-        self.__LOCAL += self.URL + '/україна/' + region'''
-
     def set_date(self, date):
         self.__DATE = date
 
-    def update(self):
-        response = requests.get(self.URL + self.__LOCAL + "/" + self.__DATE).text
+    def update(self, path):
+        response = requests.get(path).text
         page = BeautifulSoup(response, "lxml")
 
         main = page.find(class_="main  loaded")
@@ -65,6 +39,24 @@ class Weather:
         self.__WEATHER = str(main.find(class_="weatherIco").get("title"))
         self.__INFO = str(page.find(class_="wDescription clearfix")
                           .find(class_="description").text)[2:]
+
+    def get_list_region(self):
+        response = requests.get(self.URL + 'україна/').text
+        page = BeautifulSoup(response, 'lxml')
+        main = page.find(class_='mapRightCol').find_all('ul')[1].find_all('a')
+        return {context.text: context.get('href') for context in main}
+
+    def get_list_district(self):
+        response = requests.get(self.URL + 'україна/' + self.__region).text
+        page = BeautifulSoup(response, 'lxml')
+        main = page.find(class_='mapRightCol').find_all('ul')[1].find_all('a')
+        return {context.text: context.get('href') for context in main}
+
+    def get_list_position(self):
+        response = requests.get(self.URL + 'україна/' + self.__region + self.__district).text
+        page = BeautifulSoup(response, 'lxml')
+        main = page.find(class_='mapBotCol').find_all('ul')[1].find_all('a')
+        return {context.text: context.get('href')[2:] for context in main}
 
     def get_title(self) -> str:
         return str(self.__TITLE)
@@ -83,10 +75,11 @@ class Weather:
 
 
 s = Weather()
+s.update('https://' + s.get_list_position()['с Добросин'])
 s.get_list_region()
-print(s.get_list_region())
-print(s.get_list_district())
 
-# s.set_region()
-# s.update()
-# print(s.get_list_region())
+print(s.get_list_position())
+print()
+print(s.get_title())
+print(s.get_weather())
+print(s.get_info())
