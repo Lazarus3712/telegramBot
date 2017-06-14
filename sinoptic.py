@@ -76,7 +76,6 @@ class Weather:
 
 s = Weather()
 s.update('https://' + s.get_list_position()['с Добросин'])
-s.get_list_region()
 
 print(s.get_list_position())
 print()
