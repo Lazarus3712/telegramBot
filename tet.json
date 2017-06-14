@@ -1,0 +1,134 @@
+{
+  "result": [
+    {
+      "update_id": 750838917,
+      "message": {
+        "chat": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "type": "private",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "date": 1496245675,
+        "text": "ghbdsn",
+        "from": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "language_code": "en",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "message_id": 2734
+      }
+    },
+    {
+      "update_id": 750838918,
+      "message": {
+        "chat": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "type": "private",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "date": 1496245677,
+        "text": "ghbdі",
+        "from": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "language_code": "en",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "message_id": 2735
+      }
+    },
+    {
+      "update_id": 750838919,
+      "message": {
+        "chat": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "type": "private",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "date": 1496245680,
+        "text": "приві",
+        "from": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "language_code": "en",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "message_id": 2736
+      }
+    },
+    {
+      "update_id": 750838920,
+      "message": {
+        "chat": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "type": "private",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "date": 1496246774,
+        "text": "hello",
+        "from": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "language_code": "en",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "message_id": 2738
+      }
+    },
+    {
+      "update_id": 750838921,
+      "message": {
+        "chat": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "type": "private",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        },
+        "date": 1496247163,
+        "message_id": 2739,
+        "text": "taras",
+        "reply_to_message": {
+          "chat": {
+            "id": 349802856,
+            "username": "lazarus_love_go_py",
+            "type": "private",
+            "last_name": "Shabaransky",
+            "first_name": "Taras"
+          },
+          "date": 1496246774,
+          "text": "hello",
+          "from": {
+            "id": 349802856,
+            "username": "lazarus_love_go_py",
+            "language_code": "en",
+            "last_name": "Shabaransky",
+            "first_name": "Taras"
+          },
+          "message_id": 2738
+        },
+        "from": {
+          "id": 349802856,
+          "username": "lazarus_love_go_py",
+          "language_code": "en",
+          "last_name": "Shabaransky",
+          "first_name": "Taras"
+        }
+      }
+    }
+  ],
+  "ok": true
+}
