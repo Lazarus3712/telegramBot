@@ -1,14 +1,16 @@
 from telebot import TeleBot
 from constants import token
-from sinoptic import Weather
-from datetime import datetime
+
+# from sinoptic import Weather
+# from datetime import datetime
 
 '''with open("tet.json", "w") as f:
     json.dump(start.get_updates(), f, indent=2, ensure_ascii=False)'''
 
 __bot = TeleBot(token)
 
-weather = Weather()
+
+#weather = Weather()
 
 
 def __log(message, txt):
@@ -30,7 +32,7 @@ def __handle_message(message):
     __log(message, message.text)
     try:
         def __mess():
-            try:
+            '''try:
                 weather.update()
 
                 __bot.send_message(message.chat.id, weather.get_title())
@@ -42,21 +44,21 @@ def __handle_message(message):
                 __bot.send_message(message.chat.id, "Інформація: \n" + weather.get_info())
             except Exception as err:
                 weather.set_local('львів')
-                print(err)
+                print(err)'''
 
         if message.text.lower() == 'погода':
             __mess()
 
         elif (message.text.split()[0].lower() in ('місто', 'село')) and (len(message.text.split()) > 1):
-            weather.set_local(message.text.split(' ')[1].lower())
+            #weather.set_local(message.text.split(' ')[1].lower())
             __mess()
 
         elif (message.text.split()[0].lower() in 'дата') and (len(message.text.split()) > 1):
-            weather.set_date(message.text.split(' ')[1])
+            #weather.set_date(message.text.split(' ')[1])
             __mess()
 
         elif message.text.lower() == 'сьогодні':
-            weather.set_date(str(datetime.today().date()))
+            #weather.set_date(str(datetime.today().date()))
             __mess()
 
     except Exception as a:
