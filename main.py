@@ -1,5 +1,6 @@
 from telebot import TeleBot
-from constants import token
+
+# from constants import token
 
 # from sinoptic import Weather
 # from datetime import datetime

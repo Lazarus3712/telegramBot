@@ -13,15 +13,12 @@ class Weather:
 
     __region = 'львівська-область/'
     __district = 'жовківський-район/'
-    __position = list('')
 
     def set_region(self, region='львівська-область/'):
         self.__region = region + '/'
-        self.__position.append(self.__region)
 
     def set_district(self, district='жовківський-район/'):
         self.__district = district + '/'
-        self.__position.append(self.__district)
 
     def set_date(self, date):
         self.__DATE = date
@@ -40,23 +37,29 @@ class Weather:
         self.__INFO = str(page.find(class_="wDescription clearfix")
                           .find(class_="description").text)[2:]
 
-    def get_list_region(self):
+    def get_list_region(self) -> dict:
         response = requests.get(self.URL + 'україна/').text
         page = BeautifulSoup(response, 'lxml')
         main = page.find(class_='mapRightCol').find_all('ul')[1].find_all('a')
         return {context.text: context.get('href') for context in main}
 
-    def get_list_district(self):
+    def get_list_district(self) -> dict:
         response = requests.get(self.URL + 'україна/' + self.__region).text
         page = BeautifulSoup(response, 'lxml')
         main = page.find(class_='mapRightCol').find_all('ul')[1].find_all('a')
         return {context.text: context.get('href') for context in main}
 
-    def get_list_position(self):
+    def get_list_position(self) -> dict:
         response = requests.get(self.URL + 'україна/' + self.__region + self.__district).text
         page = BeautifulSoup(response, 'lxml')
-        main = page.find(class_='mapBotCol').find_all('ul')[1].find_all('a')
-        return {context.text: context.get('href')[2:] for context in main}
+
+        data = BeautifulSoup(
+            str(page.find(class_='mapBotCol').find_all(class_='clearfix')[0].find_all(class_='col6')),
+            'lxml'
+        ).find_all("li")
+
+        return {context.text[1:-1]: context.find('a').get('href')[2:]
+                for context in data}
 
     def get_title(self) -> str:
         return str(self.__TITLE)
@@ -74,11 +77,15 @@ class Weather:
         return str(self.__INFO)
 
 
-s = Weather()
-s.update('https://' + s.get_list_position()['с Добросин'])
+if __name__ == "__main__":
+    print('Loading')
 
-print(s.get_list_position())
-print()
-print(s.get_title())
-print(s.get_weather())
-print(s.get_info())
+    s = Weather()
+    s.set_region()
+    s.set_district()
+    s.set_region()
+    s.update('https://' + s.get_list_position()['с Липник'])
+
+    print(s.get_title())
+    print(s.get_weather())
+    print(s.get_info())
