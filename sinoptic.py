@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 
 class Weather:
     URL = "https://ua.sinoptik.ua/"
-    __DATE = ""
-    __TITLE = ""
+    __DATE = "null"
+    __TITLE = "null"
     __MIN_TEMP = None
     __MAX_TEMP = None
-    __WEATHER = ""
+    __WEATHER = "null"
     __INFO = "null"
 
     __region = 'львівська-область/'
