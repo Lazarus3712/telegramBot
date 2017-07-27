@@ -14,17 +14,17 @@ class Weather:
     __region = 'львівська-область/'
     __district = 'жовківський-район/'
 
-    def set_region(self, region='львівська-область/'):
+    def set_region(self, region: str = 'львівська-область/'):
         self.__region = region + '/'
 
-    def set_district(self, district='жовківський-район/'):
+    def set_district(self, district: str = 'жовківський-район/'):
         self.__district = district + '/'
 
-    def set_date(self, date):
+    def set_date(self, date: str):
         self.__DATE = date
 
-    def update(self, path):
-        response = requests.get(path).text
+    def update(self, path: str):
+        response = requests.get('https://' + path).text
         page = BeautifulSoup(response, "lxml")
 
         main = page.find(class_="main  loaded")
@@ -83,9 +83,7 @@ if __name__ == "__main__":
     s = Weather()
     s.set_region()
     s.set_district()
-    s.set_region()
-    s.update('https://' + s.get_list_position()['с Липник'])
-
+    s.update(s.get_list_position()['с Липник'])
     print(s.get_title())
     print(s.get_weather())
     print(s.get_info())
